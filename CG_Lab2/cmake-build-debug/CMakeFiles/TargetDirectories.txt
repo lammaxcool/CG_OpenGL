@@ -1,0 +1,3 @@
+/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/CMakeFiles/project.dir
