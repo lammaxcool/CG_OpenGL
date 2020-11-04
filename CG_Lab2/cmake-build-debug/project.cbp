@@ -8,43 +8,43 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug"/>
+				<Option working_dir="/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug"/>
+				<Option working_dir="/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug"/>
+				<Option working_dir="/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="project">
-				<Option output="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/project" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug"/>
+				<Option output="/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/include"/>
+					<Add directory="/home/max/Documents/CG_OpenGL/CG_Lab2/include"/>
 					<Add directory="/usr/include/c++/10"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
 					<Add directory="/usr/include/c++/10/backward"/>
@@ -54,20 +54,20 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 project"/>
-					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 project"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="project/fast">
-				<Option output="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/project" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug"/>
+				<Option output="/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/project" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/include"/>
+					<Add directory="/home/max/Documents/CG_OpenGL/CG_Lab2/include"/>
 					<Add directory="/usr/include/c++/10"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
 					<Add directory="/usr/include/c++/10/backward"/>
@@ -77,41 +77,41 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 project/fast"/>
-					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 project/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/IndexBuffer.cpp">
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/IndexBuffer.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/IndexBuffer.h">
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/IndexBuffer.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/Shader.h">
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/Shader.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/VertexArray.cpp">
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexArray.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/VertexArray.h">
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexArray.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/VertexBuffer.cpp">
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexBuffer.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/VertexBuffer.h">
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexBuffer.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/glad.c">
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/glad.c">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/main.cpp">
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/main.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/CMakeLists.txt">
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

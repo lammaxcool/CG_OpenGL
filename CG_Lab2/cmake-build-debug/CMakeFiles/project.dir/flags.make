@@ -7,11 +7,11 @@ C_FLAGS = -g
 
 C_DEFINES = 
 
-C_INCLUDES = -I"/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/include" 
+C_INCLUDES = -I/home/max/Documents/CG_OpenGL/CG_Lab2/include 
 
 CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/include" 
+CXX_INCLUDES = -I/home/max/Documents/CG_OpenGL/CG_Lab2/include 
 
