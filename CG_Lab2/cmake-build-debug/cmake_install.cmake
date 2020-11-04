@@ -1,4 +1,4 @@
-# Install script for directory: /home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project
+# Install script for directory: /home/max/Documents/CG_OpenGL/CG_Lab2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
