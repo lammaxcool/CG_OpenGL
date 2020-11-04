@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/max/Documents/CG_OpenGL/CG_Lab2/src/glad.c" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/glad.c.o"
+  "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/glad.c" "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/CMakeFiles/project.dir/src/glad.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -14,10 +14,10 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "../include"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/max/Documents/CG_OpenGL/CG_Lab2/src/IndexBuffer.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/IndexBuffer.cpp.o"
-  "/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexArray.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/VertexArray.cpp.o"
-  "/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexBuffer.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/VertexBuffer.cpp.o"
-  "/home/max/Documents/CG_OpenGL/CG_Lab2/src/main.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/main.cpp.o"
+  "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/IndexBuffer.cpp" "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/CMakeFiles/project.dir/src/IndexBuffer.cpp.o"
+  "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/VertexArray.cpp" "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/CMakeFiles/project.dir/src/VertexArray.cpp.o"
+  "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/VertexBuffer.cpp" "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/CMakeFiles/project.dir/src/VertexBuffer.cpp.o"
+  "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/src/main.cpp" "/home/max/Documents/semester_5/семестр5/CG/CG_Lab2(GLFW)/project/cmake-build-debug/CMakeFiles/project.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
