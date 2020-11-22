@@ -18,10 +18,11 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 // screen
-unsigned int SCR_WIDTH = 1920;
-unsigned int SCR_HEIGHT = 1080;
+int SCR_WIDTH = 1920;
+int SCR_HEIGHT = 1080;
 // camera
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 20.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -100,8 +101,8 @@ std::vector<glm::vec3> drawTorus(float majorRadius, float minorRadius, int numMa
             r = minorRadius * c + majorRadius;
             z = minorRadius * (GLfloat) sinf(b);
 
-            vertices.push_back(glm::vec3(x0*r, y0*r, z));
-            vertices.push_back(glm::vec3(x1*r, y1*r, z));
+            vertices.emplace_back(glm::vec3(x0*r, y0*r, z));
+            vertices.emplace_back(glm::vec3(x1*r, y1*r, z));
         }
     }
 
@@ -129,6 +130,7 @@ int main()
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetCursorPosCallback(window, cursor_position_callback);
     glfwSetScrollCallback(window, scroll_callback);
+    glfwSetKeyCallback(window, key_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // glad init
@@ -364,17 +366,21 @@ void processInput(GLFWwindow *window)
         cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * moveCameraSpeed;
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * moveCameraSpeed;
+
+    recalculateCameraPos();
+
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+}
+
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
     if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
         perspective = true;
     if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
         perspective = false;
     if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
         move = !move;
-
-    recalculateCameraPos();
-
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
 }
 
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
