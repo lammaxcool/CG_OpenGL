@@ -35,8 +35,8 @@ int phi = 45;
 // mouse button is pressed first time
 bool firstPressed = true;
 // cursor position
-float lastX = SCR_WIDTH / 2.0f;
-float lastY = SCR_HEIGHT / 2.0f;
+float lastX = float(SCR_WIDTH) / 2.0f;
+float lastY = float(SCR_HEIGHT) / 2.0f;
 // frame time
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
@@ -118,8 +118,8 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // create window
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "3D", NULL, NULL);
-    if (window == NULL)
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "3D", nullptr, nullptr);
+    if (window == nullptr)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
@@ -146,7 +146,7 @@ int main()
     GLCall( glLineWidth(4); );
 
     // cube
-    float cubePositions[] = {
+    static float cubePositions[] = {
             -5.0f, -5.0f, -5.0f,  // 1
              5.0f, -5.0f, -5.0f,  // 2
              5.0f,  5.0f, -5.0f,  // 3
@@ -158,7 +158,7 @@ int main()
             -5.0f,  5.0f,  5.0f,  // 8
     };
 
-    unsigned int cubeIndices[] = {
+    static unsigned int cubeIndices[] = {
             // cube indices
             0, 1, 2,
             2, 3, 0,
@@ -192,29 +192,33 @@ int main()
             3, 2, 2, 6, 6, 7, 7, 3
     };
 
+    // cube array and buffers
     VertexArray cubeVa;
     VertexBuffer cubeVb(cubePositions, 6 * 6 * 3 * sizeof(float));
     IndexBuffer ib(cubeIndices, 6*6 + 6*8);
     GLCall( glEnableVertexAttribArray(0); );
-    GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL); );
+    GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr); );
     cubeVa.Unbind();
 
+    // torus array and buffers
     VertexArray torusVa;
-    std::vector<glm::vec3> torusPositions;
+    static std::vector<glm::vec3> torusPositions;
     torusPositions = drawTorus(5.0f, 3.0f, 40, 20);
     VertexBuffer torusVb( &torusPositions[0], torusPositions.size()*sizeof(glm::vec3) );
     GLCall( glEnableVertexAttribArray(0); );
-    GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL); );
+    GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr); );
     torusVa.Unbind();
 
+    // surface array and buffers
     VertexArray surfaceVa;
-    std::vector<glm::vec3> surfacePositions;
+    static std::vector<glm::vec3> surfacePositions;
     surfacePositions = drawSurface(0.1f);
     VertexBuffer surfaceVb(&surfacePositions[0], surfacePositions.size()*sizeof(glm::vec3));
     GLCall( glEnableVertexAttribArray(0); );
-    GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL); );
+    GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr); );
     surfaceVa.Unbind();
 
+    // read and create shader
     ShaderProgramSource source = ParseShader("../res/shader1.shader");
     std::cout << "VERTEX" << std::endl << source.VertexSource << std::endl;
     std::cout << "FRAGMENT" << std::endl << source.FragmentSource << std::endl;
@@ -226,13 +230,15 @@ int main()
     unsigned int modelLoc;
     unsigned int ourColorLoc;
 
+    // bind shader for 1 time
     GLCall( glUseProgram(shader) );
     GLCall( glUseProgram(0) );
 
     // render loop
     while (!glfwWindowShouldClose(window))
     {
-        float currentFrame = glfwGetTime();
+        // use time for 1 frame for static camera speed
+        auto currentFrame = float(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         // input
         processInput(window);
@@ -240,7 +246,7 @@ int main()
         // use shader
         GLCall( glUseProgram(shader); );
 
-        // transform
+        // transform matrix depends on projection type
         glm::mat4 projection = glm::mat4(1.0f);
 
         float len = move ? glm::length(cameraPos - glm::vec3(0.0f, 0.0f, 0.0f)) : 20.0f;
@@ -252,7 +258,10 @@ int main()
             float coef = float(SCR_WIDTH)/float(SCR_HEIGHT);
             projection = glm::ortho(-len*coef, len*coef, -len, len, -100.f, 100.f);
         }
+
+        // view matrix depends on move type
         glm::mat4 view;
+
         if (!move) {
             float camZ = len*sinf(glm::radians(float(theta)))*cosf(glm::radians(float(phi)));
             float camX = len*sinf(glm::radians(float(theta)))*sinf(glm::radians(float(phi)));
@@ -265,6 +274,7 @@ int main()
         else {
             view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
         }
+
         // push changes to shader
         projectionLoc = glGetUniformLocation(shader, "projection");
         modelLoc = glGetUniformLocation(shader, "model");
@@ -285,10 +295,10 @@ int main()
             GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); );
             // red
             GLCall( glUniform3f(ourColorLoc, 0.5, 0.0, 0.0););
-            GLCall( glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, NULL););
+            GLCall( glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr););
             // black
             GLCall( glUniform3f(ourColorLoc, 0.0, 0.0, 0.0););
-            GLCall( glDrawElements(GL_LINES, 48, GL_UNSIGNED_INT, (void *) (6 * 6 * sizeof(unsigned int))););
+            GLCall( glDrawElements(GL_LINES, 48, GL_UNSIGNED_INT, (void *) (6*6*sizeof(unsigned int))););
         }
         cubeVa.Unbind();
 
