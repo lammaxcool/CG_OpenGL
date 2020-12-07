@@ -111,6 +111,12 @@
 		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/main.cpp">
 			<Option target="project"/>
 		</Unit>
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/stb_image.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/stb_image.h">
+			<Option target="project"/>
+		</Unit>
 		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

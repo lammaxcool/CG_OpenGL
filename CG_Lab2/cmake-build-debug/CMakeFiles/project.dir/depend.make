@@ -233,4 +233,8 @@ CMakeFiles/project.dir/src/main.cpp.o: ../src/Shader.h
 CMakeFiles/project.dir/src/main.cpp.o: ../src/VertexArray.h
 CMakeFiles/project.dir/src/main.cpp.o: ../src/VertexBuffer.h
 CMakeFiles/project.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/project.dir/src/main.cpp.o: ../src/stb_image.h
+
+CMakeFiles/project.dir/src/stb_image.cpp.o: ../src/stb_image.cpp
+CMakeFiles/project.dir/src/stb_image.cpp.o: ../src/stb_image.h
 

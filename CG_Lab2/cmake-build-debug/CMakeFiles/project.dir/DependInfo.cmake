@@ -18,6 +18,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexArray.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/VertexArray.cpp.o"
   "/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexBuffer.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/VertexBuffer.cpp.o"
   "/home/max/Documents/CG_OpenGL/CG_Lab2/src/main.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/main.cpp.o"
+  "/home/max/Documents/CG_OpenGL/CG_Lab2/src/stb_image.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/stb_image.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

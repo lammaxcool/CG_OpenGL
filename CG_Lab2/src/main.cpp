@@ -13,7 +13,8 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <vector>
-
+// stb_image
+#include "stb_image.h"
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
@@ -50,6 +51,51 @@ bool move = false;
 float func(float x, float y)
 {
     return sinf(y) * sqrtf(x);
+}
+
+std::vector<glm::vec3> drawSphere(float fRadius, int iSlices, int iStacks)
+{
+    std::vector<glm::vec3> verte_sa;
+    float drho = (float)(3.141592653589) / (GLfloat) iStacks;
+    float dtheta = 2.0f * (GLfloat)(3.141592653589) / (GLfloat) iSlices;
+    float ds = 1.0f / (GLfloat) iSlices;
+    float dt = 1.0f / (GLfloat) iStacks;
+    float t = 1.0f;
+    float s = 0.0f;
+    int i, j;
+
+    for (i = 0; i < iStacks; i++)
+    {
+        GLfloat rho = (GLfloat)i * drho;
+        float srho = sinf(rho);
+        float crho = cosf(rho);
+        float srhodrho = sinf(rho + drho);
+        float crhodrho = cosf(rho + drho);
+
+        s = 0.0f;
+        for ( j = 0; j <= iSlices; j++)
+        {
+            float ltheta = (j == iSlices) ? 0.0f : j * dtheta;
+            float stheta = -sinf(ltheta);
+            float ctheta = cosf(ltheta);
+
+            GLfloat x = stheta * srho;
+            GLfloat y = ctheta * srho;
+            GLfloat z = crho;
+
+            verte_sa.emplace_back(glm::vec3(x * fRadius, y * fRadius, z * fRadius));
+
+            x = stheta * srhodrho;
+            y = ctheta * srhodrho;
+            z = crhodrho;
+            s += ds;
+
+            verte_sa.emplace_back(glm::vec3(x * fRadius, y * fRadius, z * fRadius));
+        }
+        t -= dt;
+    }
+
+    return verte_sa;
 }
 
 std::vector<glm::vec3> drawSurface(float step)
@@ -145,70 +191,6 @@ int main()
     GLCall( glEnable(GL_LINE_SMOOTH); );
     GLCall( glLineWidth(4); );
 
-    // cube
-    static float cubePositions[] = {
-            -5.0f, -5.0f, -5.0f,  // 1
-             5.0f, -5.0f, -5.0f,  // 2
-             5.0f,  5.0f, -5.0f,  // 3
-            -5.0f,  5.0f, -5.0f,  // 4
-
-            -5.0f, -5.0f,  5.0f,  // 5
-             5.0f, -5.0f,  5.0f,  // 6
-             5.0f,  5.0f,  5.0f,  // 7
-            -5.0f,  5.0f,  5.0f,  // 8
-    };
-
-    static unsigned int cubeIndices[] = {
-            // cube indices
-            0, 1, 2,
-            2, 3, 0,
-
-            4, 5, 6,
-            6, 7, 4,
-
-            5, 1, 2,
-            2, 6, 5,
-
-            0, 4, 7,
-            7, 3, 0,
-
-            7, 6, 2,
-            2, 3, 7,
-
-            0, 2, 5,
-            5, 4, 0,
-
-            // line indices
-            0, 1, 1, 2, 2, 3, 3, 0,
-
-            4, 5, 5, 6, 6, 7, 7, 4,
-
-            5, 1, 1, 2, 2, 6, 6, 5,
-
-            4, 0, 0, 3, 3, 7, 7, 4,
-
-            0, 1, 1, 5, 5, 4, 4, 0,
-
-            3, 2, 2, 6, 6, 7, 7, 3
-    };
-
-    // cube array and buffers
-    VertexArray cubeVa;
-    VertexBuffer cubeVb(cubePositions, 6 * 6 * 3 * sizeof(float));
-    IndexBuffer ib(cubeIndices, 6*6 + 6*8);
-    GLCall( glEnableVertexAttribArray(0); );
-    GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr); );
-    cubeVa.Unbind();
-
-    // torus array and buffers
-    VertexArray torusVa;
-    static std::vector<glm::vec3> torusPositions;
-    torusPositions = drawTorus(5.0f, 3.0f, 40, 20);
-    VertexBuffer torusVb( &torusPositions[0], torusPositions.size()*sizeof(glm::vec3) );
-    GLCall( glEnableVertexAttribArray(0); );
-    GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr); );
-    torusVa.Unbind();
-
     // surface array and buffers
     VertexArray surfaceVa;
     static std::vector<glm::vec3> surfacePositions;
@@ -217,6 +199,16 @@ int main()
     GLCall( glEnableVertexAttribArray(0); );
     GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr); );
     surfaceVa.Unbind();
+
+    // sphere
+    VertexArray sphereVAO;
+    static std::vector<glm::vec3> spherePos;
+    const float radius = 7.0f;
+    spherePos = drawSphere(radius, int(5*radius), int(5*radius));
+    VertexBuffer sphereVBO(&spherePos[0], spherePos.size()*sizeof(glm::vec3));
+    GLCall( glEnableVertexAttribArray(0); );
+    GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr); );
+    sphereVAO.Unbind();
 
     // read and create shader
     ShaderProgramSource source = ParseShader("../res/shader1.shader");
@@ -281,58 +273,45 @@ int main()
         viewLoc = glGetUniformLocation(shader, "view");
         GLCall( glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection)); );
         GLCall( glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view)); );
+        GLCall( glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view)); );
 
         // render
         GLCall( glClearColor(0.2f, 0.3f, 0.3f, 1.0f); );
         GLCall( glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); );
         ourColorLoc = glGetUniformLocation(shader, "ourColor");
 
-        cubeVa.Bind();
-        {
-            glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, glm::vec3( 0.0f, 10.0f, 0.0f));
-            GLCall( glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model)); );
-            GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); );
-            // red
-            GLCall( glUniform3f(ourColorLoc, 0.5, 0.0, 0.0););
-            GLCall( glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr););
-            // black
-            GLCall( glUniform3f(ourColorLoc, 0.0, 0.0, 0.0););
-            GLCall( glDrawElements(GL_LINES, 48, GL_UNSIGNED_INT, (void *) (6*6*sizeof(unsigned int))););
-        }
-        cubeVa.Unbind();
+//        surfaceVa.Bind();
+//        {
+//            glm::mat4 model = glm::mat4(1.0f);
+//            model = glm::translate(model, glm::vec3( 0.0f, -2.0f, 0.0f));
+//            GLCall( glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model)); );
+//            // green
+//            GLCall( glUniform3f(ourColorLoc, 0.0f, 0.0f, 0.5f););
+//            GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); );
+//            GLCall( glDrawArrays(GL_TRIANGLE_STRIP, 0, surfacePositions.size()); );
+//            // black
+//            GLCall( glUniform3f(ourColorLoc, 0.0f, 0.0f, 0.0f););
+//            GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); );
+//            GLCall( glDrawArrays(GL_TRIANGLE_STRIP, 0, surfacePositions.size()); );
+//        }
+//        surfaceVa.Unbind();
 
-        torusVa.Bind();
-        {
-            glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, glm::vec3( 0.0f, -10.0f, 0.0f));
-            GLCall( glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model)); );
-            // green
-            GLCall( glUniform3f(ourColorLoc, 0.0f, 0.5f, 0.0f););
-            GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); );
-            GLCall( glDrawArrays(GL_TRIANGLE_STRIP, 0, torusPositions.size()); );
-            // black
-            GLCall( glUniform3f(ourColorLoc, 0.0f, 0.0f, 0.0f););
-            GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); );
-            GLCall( glDrawArrays(GL_TRIANGLE_STRIP, 0, torusPositions.size()); );
-        }
-        torusVa.Unbind();
-
-        surfaceVa.Bind();
+        sphereVAO.Bind();
         {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, glm::vec3( 0.0f, 0.0f, 0.0f));
             GLCall( glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model)); );
-            // green
-            GLCall( glUniform3f(ourColorLoc, 0.0f, 0.0f, 0.5f););
+            GLCall( glUniform3f(ourColorLoc, 0.5f, 0.3f, 0.1f););
+
+            // orange
+            GLCall( glUniform3f(ourColorLoc, 0.5f, 0.5f, 0.1f););
             GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); );
-            GLCall( glDrawArrays(GL_TRIANGLE_STRIP, 0, surfacePositions.size()); );
+            GLCall( glDrawArrays(GL_TRIANGLE_STRIP, 0, spherePos.size()); );
             // black
-            GLCall( glUniform3f(ourColorLoc, 0.0f, 0.0f, 0.0f););
-            GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); );
-            GLCall( glDrawArrays(GL_TRIANGLE_STRIP, 0, surfacePositions.size()); );
+//            GLCall( glUniform3f(ourColorLoc, 0.0f, 0.0f, 0.0f););
+//            GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); );
+//            GLCall( glDrawArrays(GL_TRIANGLE_STRIP, 0, spherePos.size()); );
         }
-        surfaceVa.Unbind();
 
         GLCall( glUseProgram(0) );
 

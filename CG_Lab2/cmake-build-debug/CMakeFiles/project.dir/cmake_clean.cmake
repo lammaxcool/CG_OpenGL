@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/project.dir/src/VertexBuffer.cpp.o"
   "CMakeFiles/project.dir/src/glad.c.o"
   "CMakeFiles/project.dir/src/main.cpp.o"
+  "CMakeFiles/project.dir/src/stb_image.cpp.o"
   "project"
   "project.pdb"
 )
