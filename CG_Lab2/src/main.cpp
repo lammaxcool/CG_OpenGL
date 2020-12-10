@@ -31,8 +31,8 @@ glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 float pitch = 0.0f;
 float yaw = -90.0f;
 //float roll = 0.0f;
-float theta = 45;
-float phi = 45;
+float theta = 89.0f;
+float phi = 0.0f;
 // mouse button is pressed first time
 bool firstPressed = true;
 // cursor position
@@ -48,25 +48,20 @@ bool perspective = false;
 // move mode
 bool move = false;
 
-float func(float x, float y)
-{
-    return sinf(y) * sqrtf(x);
-}
-
 std::vector<glm::vec3> drawSphere(float fRadius, int iSlices, int iStacks)
 {
     std::vector<glm::vec3> verte_sa;
-    float drho = (float)(3.141592653589) / (GLfloat) iStacks;
-    float dtheta = 2.0f * (GLfloat)(3.141592653589) / (GLfloat) iSlices;
-    float ds = 1.0f / (GLfloat) iSlices;
-    float dt = 1.0f / (GLfloat) iStacks;
+    float drho = (float)(3.141592653589) / (float) iStacks;
+    float dtheta = 2.0f * (float)(3.141592653589) / (float) iSlices;
+    float ds = 1.0f / (float) iSlices;
+    float dt = 1.0f / (float) iStacks;
     float t = 1.0f;
     float s = 0.0f;
     int i, j;
 
     for (i = 0; i < iStacks; i++)
     {
-        GLfloat rho = (GLfloat)i * drho;
+        float rho = (float)i * drho;
         float srho = sinf(rho);
         float crho = cosf(rho);
         float srhodrho = sinf(rho + drho);
@@ -79,9 +74,9 @@ std::vector<glm::vec3> drawSphere(float fRadius, int iSlices, int iStacks)
             float stheta = -sinf(ltheta);
             float ctheta = cosf(ltheta);
 
-            GLfloat x = stheta * srho;
-            GLfloat y = ctheta * srho;
-            GLfloat z = crho;
+            float x = stheta * srho;
+            float y = ctheta * srho;
+            float z = crho;
 
             verte_sa.emplace_back(glm::vec3(x * fRadius, y * fRadius, z * fRadius));
             verte_sa.emplace_back(glm::normalize(glm::vec3(x * fRadius, y * fRadius, z * fRadius)));
@@ -100,61 +95,42 @@ std::vector<glm::vec3> drawSphere(float fRadius, int iSlices, int iStacks)
     return verte_sa;
 }
 
-std::vector<glm::vec3> drawSurface(float step)
+glm::vec3 GetPositionOnSphere(float u, float v)
 {
-    std::vector<glm::vec3> vertices;
-    float min = -10.0f, max = 10.0f;
-    float x = min, z = min;
-    float y;
+    const float radius = 1.f;
+    const float latitude = float(M_PI) * (1.f - v);
+    const float longitude = float(2.0 * M_PI) * u;
+    const float latitudeRadius = radius * sinf(latitude);
 
-    while (x <= max)
-    {
-        z = min;
-        while (z <= max)
-        {
-            y = func(z, x);
-            vertices.emplace_back(glm::vec3(x, y, z));
-            y = func(z, x + step);
-            vertices.emplace_back(glm::vec3(x + step, y, z));
-            z += step;
-        }
-
-        x += step;
-    }
-
-    return vertices;
+    return { cosf(longitude) * latitudeRadius,
+             cosf(latitude) * radius,
+             sinf(longitude) * latitudeRadius };
 }
 
-std::vector<glm::vec3> drawTorus(float majorRadius, float minorRadius, int numMajor, int numMinor)
-{
-    std::vector<glm::vec3> vertices;
-    float majorStep = 2.0f * 3.141592653589 / numMajor;
-    float minorStep = 2.0f * 3.141592653589 / numMinor;
-    float a0, a1, x0, x1, y0, y1, b, c, r, z;
-    int i, j;
+std::vector<float> sphere(unsigned int slices, unsigned int stacks) {
+    std::vector<float> vertexData;
+    for (unsigned ci = 0; ci < slices; ++ci) {
+        const float u = float(ci) / float(slices - 1);
+        for (unsigned ri = 0; ri < stacks; ++ri) {
+            const float v = float(ri) / float(stacks - 1);
 
-    for (i = 0; i < numMajor; ++i)
-    {
-        a0 = float(i) * majorStep;
-        a1 = a0 + majorStep;
-        x0 = cosf(a0);
-        y0 = sinf(a0);
-        x1 = cosf(a1);
-        y1 = sinf(a1);
+            glm::vec3 pos = GetPositionOnSphere(u, v);
+            vertexData.emplace_back(pos.x);
+            vertexData.emplace_back(pos.y);
+            vertexData.emplace_back(pos.z);
 
-        for (j = 0; j <= numMinor; ++j)
-        {
-            b = float(j) * minorStep;
-            c = (GLfloat) cosf(b);
-            r = minorRadius * c + majorRadius;
-            z = minorRadius * (GLfloat) sinf(b);
+            // normals are the same as positions because of 1.0f radius
+            vertexData.emplace_back(pos.x);
+            vertexData.emplace_back(pos.y);
+            vertexData.emplace_back(pos.z);
 
-            vertices.emplace_back(glm::vec3(x0*r, y0*r, z));
-            vertices.emplace_back(glm::vec3(x1*r, y1*r, z));
+            // texture coordinates are 2D
+            vertexData.emplace_back(1.f - u );
+            vertexData.emplace_back(v);
         }
     }
 
-    return vertices;
+    return vertexData;
 }
 
 int main() {
@@ -197,16 +173,23 @@ int main() {
 
     static std::vector<glm::vec3> spherePos;
     const float radius = 1.0f;
-    spherePos = drawSphere(radius, int(30 * radius), int(30 * radius));
+    spherePos = drawSphere(radius, int(15 * radius), int(15 * radius));
     VertexBuffer sphereVBO(&spherePos[0], spherePos.size() * sizeof(glm::vec3));
+
+//    std::vector<float> sphereVertex = sphere(50, 50);
+//    VertexBuffer sphereVBO(&sphereVertex[0], sphereVertex.size() * sizeof(float));
 
     EarthVAO.Bind();
     {
-        // use 2 properties (coordinates and normals)
+        // positions
         GLCall( glEnableVertexAttribArray(0); );
         GLCall( glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*) 0); );
+        // normals
         GLCall( glEnableVertexAttribArray(1); );
         GLCall( glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6*sizeof(float), (void*) (3*sizeof(float))); );
+        // texture coord
+//        GLCall( glEnableVertexAttribArray(2); );
+//        GLCall( glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8*sizeof(float), (void*) (6*sizeof(float))); );
     }
     EarthVAO.Unbind();
 
@@ -317,6 +300,7 @@ int main() {
 
                     GLCall(glUniform3f(lightColorLoc, 1.0f, 1.0f, 1.0f); );
                     GLCall(glDrawArrays(GL_TRIANGLE_STRIP, 0, (spherePos.size() / 2)); );
+//                    GLCall( glDrawArrays(GL_TRIANGLE_STRIP, 0, ((sphereVertex.size() / 6) * 3)); );
                 }
                 SunVAO.Unbind();
             }
@@ -336,27 +320,31 @@ int main() {
                 // set projection and view to shader
                 GLCall(glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection)); );
                 GLCall(glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view)); );
-                // GLCall(glUniform3fv(viewPosLoc, 1, glm::value_ptr(glm::normalize(lightPos))); );
+                // GLCall(glUniform3fv(viewPosLoc, 1, glm::value_ptr(glm::normalize(lightPos))); );  // specular
 
                 // set light pos and color
                 GLCall(glUniform3fv(lightColorLoc, 1, glm::value_ptr(lightColor)); );
                 GLCall(glUniform3fv(lightPosLoc, 1, glm::value_ptr(lightPos)); );
 
                 // Earth correction
-                float EarthRadius = 20.0f;
+                float EarthRadius = 10.0f;
 //                glm::vec3 EarthPos(EarthRadius*sin(glfwGetTime()), 0.0f, EarthRadius*cos(glfwGetTime()));
                 glm::vec3 EarthPos(EarthRadius, glm::vec2(0.0f));
-                EarthRotationAngle += 50.0f*deltaTime;
+                EarthRotationAngle += 100.0f*deltaTime;
 
                 EarthVAO.Bind();
                 {
                     glm::mat4 model = glm::mat4(1.0f);
-                    model = glm::rotate(model, glm::radians(EarthRotationAngle), glm::normalize(glm::vec3(EarthPos.x, 1.0, EarthPos.z))); // glm::vec3(0.0f, 1.0f, 0.0f));
+                    model = glm::scale(model, glm::vec3(2.0f));
                     model = glm::translate(model, EarthPos);
+                    model = glm::rotate(model, glm::radians(EarthRotationAngle), glm::vec3(0.0f, 1.0f, 0.0f));
                     GLCall(glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model)); );
                     GLCall(glUniform3f(ourColorLoc, 0.3f, 0.5f, 0.5f); );
 
+                    GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); );
                     GLCall(glDrawArrays(GL_TRIANGLE_STRIP, 0, (spherePos.size() / 2)); );
+                    GLCall( glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); );
+//                    GLCall( glDrawArrays(GL_TRIANGLE_STRIP, 0, ((sphereVertex.size() / 6) * 3)); );
                 }
                 EarthVAO.Unbind();
             }
