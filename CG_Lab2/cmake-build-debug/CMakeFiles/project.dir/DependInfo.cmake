@@ -15,6 +15,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/max/Documents/CG_OpenGL/CG_Lab2/src/IndexBuffer.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/IndexBuffer.cpp.o"
+  "/home/max/Documents/CG_OpenGL/CG_Lab2/src/Sphere.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/Sphere.cpp.o"
   "/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexArray.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/VertexArray.cpp.o"
   "/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexBuffer.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/VertexBuffer.cpp.o"
   "/home/max/Documents/CG_OpenGL/CG_Lab2/src/main.cpp" "/home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug/CMakeFiles/project.dir/src/main.cpp.o"

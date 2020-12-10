@@ -93,6 +93,12 @@
 		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/Shader.h">
 			<Option target="project"/>
 		</Unit>
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/Sphere.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/Sphere.h">
+			<Option target="project"/>
+		</Unit>
 		<Unit filename="/home/max/Documents/CG_OpenGL/CG_Lab2/src/VertexArray.cpp">
 			<Option target="project"/>
 		</Unit>

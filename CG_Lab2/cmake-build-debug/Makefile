@@ -170,6 +170,33 @@ src/IndexBuffer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/IndexBuffer.cpp.s
 .PHONY : src/IndexBuffer.cpp.s
 
+src/Sphere.o: src/Sphere.cpp.o
+
+.PHONY : src/Sphere.o
+
+# target to build an object file
+src/Sphere.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/Sphere.cpp.o
+.PHONY : src/Sphere.cpp.o
+
+src/Sphere.i: src/Sphere.cpp.i
+
+.PHONY : src/Sphere.i
+
+# target to preprocess a source file
+src/Sphere.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/Sphere.cpp.i
+.PHONY : src/Sphere.cpp.i
+
+src/Sphere.s: src/Sphere.cpp.s
+
+.PHONY : src/Sphere.s
+
+# target to generate assembly for a file
+src/Sphere.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/Sphere.cpp.s
+.PHONY : src/Sphere.cpp.s
+
 src/VertexArray.o: src/VertexArray.cpp.o
 
 .PHONY : src/VertexArray.o
@@ -317,6 +344,9 @@ help:
 	@echo "... src/IndexBuffer.o"
 	@echo "... src/IndexBuffer.i"
 	@echo "... src/IndexBuffer.s"
+	@echo "... src/Sphere.o"
+	@echo "... src/Sphere.i"
+	@echo "... src/Sphere.s"
 	@echo "... src/VertexArray.o"
 	@echo "... src/VertexArray.i"
 	@echo "... src/VertexArray.s"
