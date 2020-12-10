@@ -1,4 +1,1 @@
-/snap/clion/137/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/max/Documents/CG_OpenGL/CG_Lab2
--- Configuring done
--- Generating done
--- Build files have been written to: /home/max/Documents/CG_OpenGL/CG_Lab2/cmake-build-debug
+CMakeLists.txt not found in /home/max/Documents/CG_OpenGL/CG_Lab2 Select CMakeLists.txt
